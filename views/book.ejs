@@ -1,0 +1,13 @@
+<%- include('partials/header.ejs'); -%>
+
+<h1>Scribble</h1>
+<div>
+	<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" />
+	<h2><%= book.title %> by <%= book.author %></h2>
+	<p>ISBN: <%= book.isbn %>
+	<p>Date finished: <%= book.date_read %>, rating: <%= book.rating %></p>
+	<p><%= book.short_description %></p>
+	<p><%= book.notes %></p>
+</div>
+
+<%- include('partials/footer.ejs'); -%>
