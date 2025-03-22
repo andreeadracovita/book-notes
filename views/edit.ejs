@@ -23,9 +23,20 @@
 				<label for="isbn">ISBN</label>
 				<input id="isbn" type="text" name="isbn" value="<%= book.isbn %>">
 				<label for="date_read">Date read</label>
-				<input id="date_read" type="date" name="date_read" value="<%= new Date(book.date_read).toISOString().slice(0, 10) %>">
+				<input id="date_read" type="date" name="date_read" value="<%= date %>">
 				<label for="rating">My rating</label>
-				<input id="rating" type="number" name="rating" value="<%= book.rating %>">
+				<div class="rate">
+					<% for (let i = 5; i >= 1; i--) { %>
+						<input
+							type="radio"
+							id="star<%= i %>"
+							name="rating"
+							value="<%= i %>"
+							<% if (book.rating === i) { %>checked<% } %>
+						/>
+						<label for="star<%= i %>" title="text"><%= i %> stars</label>
+					<% } %>
+				</div>
 
 				<label for="short_description">Description</label>
 			    <textarea id="short_description" name="short_description" rows="10"><%= book.short_description %></textarea>
@@ -47,9 +58,19 @@
 				<label for="isbn">ISBN</label>
 				<input id="isbn" type="text" name="isbn">
 				<label for="date_read">Date read</label>
-				<input id="date_read" type="date" name="date_read">
+				<input id="date_read" type="date" name="date_read" value="<%= new Date() %>">
 				<label for="rating">My rating</label>
-				<input id="rating" type="number" name="rating">
+				<div class="rate">
+					<% for (let i = 5; i >= 1; i--) { %>
+						<input
+							type="radio"
+							id="star<%= i %>"
+							name="rating"
+							value="<%= i %>"
+						/>
+						<label for="star<%= i %>" title="text"><%= i %> stars</label>
+					<% } %>
+				</div>
 
 				<label for="short_description">Description</label>
 			    <textarea id="short_description" name="short_description" rows="10"></textarea>

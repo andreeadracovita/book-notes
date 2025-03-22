@@ -21,7 +21,7 @@
 		<div>
 			<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-S.jpg" />
 			<a href="/book/<%= book.id %>"><h2><%= book.title %> by <%= book.author %></h2></a>
-			<p>Date finished: <%= new Date(book.date_read).toISOString().slice(0, 10) %>, rating: <%= book.rating %></p>
+			<p>Date finished: <%= book.date_read %>, rating: <%= book.rating %></p>
 			<p><%= book.short_description %></p>
 		</div>
 	<% } %>

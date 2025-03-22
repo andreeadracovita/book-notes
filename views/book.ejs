@@ -19,8 +19,21 @@
 			<h3><%= book.author %></h3>
 
 			<p>ISBN: <%= book.isbn %>
-			<p>Date read: <%= new Date(book.date_read).toISOString().slice(0, 10) %></p>
-			<p>Rating: <%= book.rating %></p>
+			<p>Date read: <%= date %></p>
+			<h4>My Rating:</h4>
+			<div class="rate">
+				<% for (let i = 5; i >= 1; i--) { %>
+					<input
+						type="radio"
+						id="star<%= i %>"
+						name="rating"
+						value="<%= i %>"
+						<% if (book.rating === i) { %>checked<% } %>
+						disabled
+					/>
+					<label for="star<%= i %>" title="text"><%= i %> stars</label>
+				<% } %>
+			</div>
 
 			<p><%= book.short_description %></p>
 			<h4>Notes</h4>

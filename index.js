@@ -18,13 +18,13 @@ db.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-let orderBy = "title";
+let orderBy = "recent";
 
 async function fetchData() {
 	try {
 		let result;
 		if (orderBy === "title") {
-			result = await db.query("SELECT * FROM books");
+			result = await db.query("SELECT * FROM books ORDER BY title ASC");
 		} else if (orderBy === "recent") {
 			result = await db.query("SELECT * FROM books ORDER BY date_read DESC");
 		} else if (orderBy === "rating") {
@@ -53,7 +53,7 @@ async function fetchDataById(id) {
 }
 
 async function addData(data) {
-	const { id, title, author, isbn, date_read, rating, short_description, notes } = data;
+	const { title, author, isbn, date_read, rating, short_description, notes } = data;
 	if (!title || !author || !isbn || !date_read) {
 		return undefined;
 	}
@@ -63,7 +63,7 @@ async function addData(data) {
 			VALUES ($1, $2, $3, $4, $5, $6, $7)
 			RETURNING id;
 			`,
-			[title, author, isbn, short_description || null, notes || null, rating || null, new Date(date_read).toISOString().slice(0, 10)]
+			[title, author, isbn, short_description || null, notes || null, parseInt(rating) || null, new Date(date_read).toISOString().slice(0, 10)]
 		);
 		if (result && result.rows.length === 1) {
 			return result.rows[0];
@@ -76,21 +76,16 @@ async function addData(data) {
 
 async function updateDataWithId(id, data) {
 	const { title, author, isbn, date_read, rating, short_description, notes } = data;
-	console.log(data);
 	if (!id || !title || !author || !isbn || !date_read) {
-		console.log("Missing info");
 		return;
 	}
-	console.log("Updating book with id", id);
 	try {
 		await db.query(`
 			UPDATE books
 			SET title=$1, author=$2, isbn=$3, short_description=$4, notes=$5, rating=$6, date_read=$7
-			WHERE id = $8;
-		`,
-		[title, author, isbn, short_description, notes, rating, date_read, id]
+			WHERE id = $8;`,
+			[title, author, isbn, short_description, notes, rating, new Date(date_read).toISOString().slice(0, 10), id]
 		);
-		console.log("Book updated successfully!");
 	} catch (err) {
 		console.error(err);
 	}
@@ -102,6 +97,12 @@ async function removeData(id) {
 	} catch (err) {
 		console.error(err);
 	}
+}
+
+function formatDate(date) {
+	return date.getFullYear().toString() + "-" +
+		(date.getMonth() + 1).toString().padStart(2, '0') + "-" +
+		date.getDate().toString().padStart(2, '0');
 }
 
 // Route to render the landing page
@@ -127,10 +128,10 @@ app.get("/new", (req, res) => {
 app.get("/book/:id", async (req, res) => {
 	const id = parseInt(req.params.id);
 	const foundBook = await fetchDataById(id);
-	// console.log(foundBook, id);
 	if (foundBook) {
 		res.render("book.ejs", {
-			book: foundBook
+			book: foundBook,
+			date: formatDate(foundBook.date_read)
 		});
 	} else {
 		res.redirect("/");
@@ -154,11 +155,11 @@ app.post("/edit/:id", async (req, res) => {
 	const id = parseInt(req.params.id);
 	if (req.body["action"] === "edit") {
 		// Route to render book edit page
-		// console.log("Edit book with id", id);
 		const foundBook = await fetchDataById(id);
 		if (foundBook) {
 			res.render("edit.ejs", {
-				book: foundBook
+				book: foundBook,
+				date: formatDate(foundBook.date_read)
 			});
 		} else {
 			res.redirect(`/book/${ id }`);
