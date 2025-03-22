@@ -18,7 +18,6 @@ db.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-let books = [];
 let orderBy = "title";
 
 async function fetchData() {
@@ -32,30 +31,147 @@ async function fetchData() {
 			result = await db.query("SELECT * FROM books ORDER BY rating DESC");
 
 		}
-		books = result.rows;
+		return result.rows;
+	} catch (err) {
+		console.error(err);
+		return [];
+	}
+}
+
+async function fetchDataById(id) {
+	try {
+		const result = await db.query("SELECT * FROM books WHERE id = $1", [id]);
+		if (result && result.rows.length === 1) {
+			return result.rows[0];
+		} else {
+			return undefined;
+		}
+	} catch (err) {
+		console.error(err);
+		return undefined;
+	}
+}
+
+async function addData(data) {
+	const { id, title, author, isbn, date_read, rating, short_description, notes } = data;
+	if (!title || !author || !isbn || !date_read) {
+		return undefined;
+	}
+	try {
+		const result = await db.query(`
+			INSERT INTO books (title, author, isbn, short_description, notes, rating, date_read)
+			VALUES ($1, $2, $3, $4, $5, $6, $7)
+			RETURNING id;
+			`,
+			[title, author, isbn, short_description || null, notes || null, rating || null, new Date(date_read).toISOString().slice(0, 10)]
+		);
+		if (result && result.rows.length === 1) {
+			return result.rows[0];
+		}
+	} catch (err) {
+		console.error(err);
+		return undefined;
+	}
+}
+
+async function updateDataWithId(id, data) {
+	const { title, author, isbn, date_read, rating, short_description, notes } = data;
+	console.log(data);
+	if (!id || !title || !author || !isbn || !date_read) {
+		console.log("Missing info");
+		return;
+	}
+	console.log("Updating book with id", id);
+	try {
+		await db.query(`
+			UPDATE books
+			SET title=$1, author=$2, isbn=$3, short_description=$4, notes=$5, rating=$6, date_read=$7
+			WHERE id = $8;
+		`,
+		[title, author, isbn, short_description, notes, rating, date_read, id]
+		);
+		console.log("Book updated successfully!");
 	} catch (err) {
 		console.error(err);
 	}
 }
 
+async function removeData(id) {
+	try {
+		await db.query("DELETE FROM books WHERE id = $1", [id]);
+	} catch (err) {
+		console.error(err);
+	}
+}
+
+// Route to render the landing page
 app.get("/", async (req, res) => {
-	await fetchData();
+	const books = await fetchData();
 	res.render("index.ejs", {
 		books
 	});
 });
 
-app.get("/book/:id", (req, res) => {
-	const id = parseInt(req.params.id);
-	const foundBook = books.find(book => book.id == id);
-	res.render("book.ejs", {
-		book: foundBook
-	});
-});
-
+// Change ordering for books on the landing page
 app.post("/order", (req, res) => {
 	orderBy = req.body["order"];
 	res.redirect("/");
+});
+
+// Route to render the edit page
+app.get("/new", (req, res) => {
+	res.render("edit.ejs");
+});
+
+// Route to render a specific book page by id
+app.get("/book/:id", async (req, res) => {
+	const id = parseInt(req.params.id);
+	const foundBook = await fetchDataById(id);
+	// console.log(foundBook, id);
+	if (foundBook) {
+		res.render("book.ejs", {
+			book: foundBook
+		});
+	} else {
+		res.redirect("/");
+	}
+});
+
+// Create a new book
+app.post("/add", async (req, res) => {
+	const newBook = req.body;
+	const result = await addData(req.body);
+	if (result) {
+		res.redirect(`/book/${ result.id }`);
+	} else {
+		console.log("The book could not be added");
+		res.redirect("/new");
+	}
+});
+
+// Edit/save/remove book with specific id
+app.post("/edit/:id", async (req, res) => {
+	const id = parseInt(req.params.id);
+	if (req.body["action"] === "edit") {
+		// Route to render book edit page
+		// console.log("Edit book with id", id);
+		const foundBook = await fetchDataById(id);
+		if (foundBook) {
+			res.render("edit.ejs", {
+				book: foundBook
+			});
+		} else {
+			res.redirect(`/book/${ id }`);
+		}
+	} else if (req.body["action"] === "save") {
+		// Save edit for book by id
+		await updateDataWithId(id, req.body);
+		res.redirect(`/book/${ id }`);
+	} else if (req.body["action"] === "remove") {
+		// Remove book by id
+		removeData(id);
+		res.redirect("/");
+	}
 });
 
 app.listen(port, () => {

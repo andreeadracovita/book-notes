@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	  <meta charset="UTF-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <title>Notable</title>
+	  <link rel="stylesheet" href="/styles/main.css">
+	</head>
+
+	<body>
+		<%- include('partials/header.ejs'); -%>
+
+		<% if (locals.book) { %>
+			<!-- Edit/remove book -->
+			<form method="post" action="/edit/<%= book.id %>">
+				<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" />
+				<label for="title">Title</label>
+				<input id="title" type="text" name="title" value="<%= book.title %>">
+
+				<label for="author">Author</label>
+				<input id="author" type="text" name="author" value="<%= book.author %>">
+
+				<label for="isbn">ISBN</label>
+				<input id="isbn" type="text" name="isbn" value="<%= book.isbn %>">
+				<label for="date_read">Date read</label>
+				<input id="date_read" type="date" name="date_read" value="<%= new Date(book.date_read).toISOString().slice(0, 10) %>">
+				<label for="rating">My rating</label>
+				<input id="rating" type="number" name="rating" value="<%= book.rating %>">
+
+				<label for="short_description">Description</label>
+			    <textarea id="short_description" name="short_description" rows="10"><%= book.short_description %></textarea>
+			    <label for="notes">Notes</label>
+			    <textarea id="notes" name="notes" rows="10"><%= book.notes %></textarea>
+
+			    <button style="background: green" name="action" value="save">Save</button><br />
+			    <button style="background: orange" name="action" value="remove">Remove</button>
+			</form>
+		<% } else { %>
+			<!-- New book -->
+			<form method="post" action="/add">
+				<label for="title">Title</label>
+				<input id="title" type="text" name="title">
+
+				<label for="author">Author</label>
+				<input id="author" type="text" name="author">
+
+				<label for="isbn">ISBN</label>
+				<input id="isbn" type="text" name="isbn">
+				<label for="date_read">Date read</label>
+				<input id="date_read" type="date" name="date_read">
+				<label for="rating">My rating</label>
+				<input id="rating" type="number" name="rating">
+
+				<label for="short_description">Description</label>
+			    <textarea id="short_description" name="short_description" rows="10"></textarea>
+			    <label for="notes">Notes</label>
+			    <textarea id="notes" name="notes" rows="10"></textarea>
+
+			    <button style="background: green" value="submit">Add book</button>
+			</form>
+		<% } %>
+
+
+		<%- include('partials/footer.ejs'); -%>
+	</body>
+</html>

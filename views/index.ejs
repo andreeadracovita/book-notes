@@ -1,20 +1,32 @@
-<%- include('partials/header.ejs'); -%>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	  <meta charset="UTF-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <title>Notable</title>
+	  <link rel="stylesheet" href="/styles/main.css">
+	</head>
 
-<h1>Scribble</h1>
-<form action="/order" method="post">
-<p>Order by: 
-	<input type="submit" name="order" value="title" id="title">, 
-	<input type="submit" name="order" value="recent" id="recent">, 
-	<input type="submit" name="order" value="rating" id="rating">
-</p>
-</form>
-<% for(let book of books){ %>
-	<div>
-		<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" />
-		<a href="/book/<%= book.id %>"><h2><%= book.title %> by <%= book.author %></h2></a>
-		<p>Date finished: <%= book.date_read %>, rating: <%= book.rating %></p>
-		<p><%= book.short_description %></p>
-	</div>
-<% } %>
+	<body>
+	<%- include('partials/header.ejs'); -%>
 
-<% include('partials/footer.ejs'); -%>
+	<form action="/order" method="post">
+	<p>Order by: 
+		<input type="submit" name="order" value="title" id="title">, 
+		<input type="submit" name="order" value="recent" id="recent">, 
+		<input type="submit" name="order" value="rating" id="rating">
+	</p>
+	</form>
+	<% for(let book of books){ %>
+		<div>
+			<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-S.jpg" />
+			<a href="/book/<%= book.id %>"><h2><%= book.title %> by <%= book.author %></h2></a>
+			<p>Date finished: <%= new Date(book.date_read).toISOString().slice(0, 10) %>, rating: <%= book.rating %></p>
+			<p><%= book.short_description %></p>
+		</div>
+	<% } %>
+
+	<% include('partials/footer.ejs'); -%>
+
+	</body>
+</html>
