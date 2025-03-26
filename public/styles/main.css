@@ -1,8 +1,20 @@
+/* Color theme */
+.light-text {
+    color: #98948e;
+}
+
 input, label, textarea, p {
     clear: left;
     display: block;
 }
 
+p {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Sections */
 #navbar {
     background-color: #d9c8b4;
 }
@@ -17,6 +29,7 @@ input, label, textarea, p {
 
 a {
     color: black;
+    text-decoration: none;
 }
 
 a.nav-link {
@@ -27,25 +40,35 @@ a.nav-link:hover {
     color: #db5461;
 }
 
+/* Truncate book description */
+.truncate {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 3; /* number of lines to show */
+           line-clamp: 3;
+   -webkit-box-orient: vertical;
+}
+
 /*<weight>: Use a value from 100 to 900*/
 /*<uniquifier>: Use a unique and descriptive class name*/
 .league-spartan {
-  font-family: "League Spartan", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 900;
-  font-style: normal;
+    font-family: "League Spartan", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .lato-regular {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
+/* Start rating display */
 .rate {
     float: left;
-    height: 46px;
-    padding: 0 10px;
+    height: 28px;
 }
 .rate:not(:checked) > input {
     position:absolute;
@@ -57,7 +80,7 @@ a.nav-link:hover {
     overflow:hidden;
     white-space:nowrap;
     cursor:pointer;
-    font-size:30px;
+    font-size:24px;
     color:#ccc;
 }
 .rate:not(:checked) > label:before {

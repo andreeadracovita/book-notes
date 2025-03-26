@@ -20,6 +20,8 @@ app.use(express.static("public"));
 
 let orderBy = "recent";
 
+const highlightId = 1;
+
 async function fetchData() {
 	try {
 		let result;
@@ -108,7 +110,9 @@ function formatDate(date) {
 // Route to render the landing page
 app.get("/", async (req, res) => {
 	const books = await fetchData();
+	const highlightBook = await fetchDataById(highlightId);
 	res.render("index.ejs", {
+		highlight: highlightBook,
 		books
 	});
 });

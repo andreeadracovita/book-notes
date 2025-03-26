@@ -9,11 +9,51 @@
 				<p class="lato-regular text-uppercase">Oscar Wilde, “The Picture of Dorian Grey”</p>
 			</div>
 			<div class="col-12 col-lg-6 d-flex justify-content-center">
-				<img src="https://cdn.dribbble.com/userupload/10564040/file/original-6d74f6c5ef4eb700e1ca6871046453ba.jpg?resize=752x957&vertical=center" class="d-block mx-lg-auto img-fluid" alt="forbidden-books-illustration" height="460" width="421" loading="lazy">
+				<img src="https://cdn.dribbble.com/userupload/10564040/file/original-6d74f6c5ef4eb700e1ca6871046453ba.jpg" class="d-block mx-lg-auto img-fluid" alt="forbidden-books-illustration" height="460" width="421" loading="lazy">
 			</div>
 		</div>
 	</div>
 </section>
+<% if (locals.highlight) { %>
+<section id="highlight">
+	<div class="container my-5">
+		<h1 class="league-spartan mb-3">Highlight</h1>
+		<div class="row flex-lg-row">
+			<div id="highlight-cover" class="col-2">
+				<a href="/book/<%= highlight.id %>">
+					<img src="https://covers.openlibrary.org/b/isbn/<%= highlight.isbn %>-M.jpg" loading="lazy"/>
+				</a>
+			</div>
+			<div id="highlight-detail" class="col-10">
+				<h2 class="league-spartan mt-3"><%= highlight.title %></h2>
+				<p class="lato-regular pb-3 border-bottom"><%= highlight.author %></p>
+				<div class="row fleg-lg-row justify-content-between">
+					<div class="col-8">
+						<p class="truncate light-text"><%= highlight.short_description %></p>
+						<a href="/book/<%= highlight.id %>"><p class="text-uppercase small">See more details</p></a>
+					</div>
+					<div class="col-2">
+						<h3 class="league-spartan">My rating</h3>
+						<div class="rate">
+							<% for (let i = 5; i >= 1; i--) { %>
+								<input
+									type="radio"
+									id="star<%= i %>"
+									name="rating"
+									value="<%= i %>"
+									<% if (highlight.rating === i) { %>checked<% } %>
+									disabled
+								/>
+								<label for="star<%= i %>"><%= i %> stars</label>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<% } %>
 
 <form action="/order" method="post">
 <p>Order by: 
