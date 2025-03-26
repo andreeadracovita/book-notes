@@ -18,7 +18,7 @@ db.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-let orderBy = "recent";
+let orderBy = "newest";
 
 const highlightId = 1;
 
@@ -27,7 +27,7 @@ async function fetchData() {
 		let result;
 		if (orderBy === "title") {
 			result = await db.query("SELECT * FROM books ORDER BY title ASC");
-		} else if (orderBy === "recent") {
+		} else if (orderBy === "newest") {
 			result = await db.query("SELECT * FROM books ORDER BY date_read DESC");
 		} else if (orderBy === "rating") {
 			result = await db.query("SELECT * FROM books ORDER BY rating DESC");
@@ -113,13 +113,14 @@ app.get("/", async (req, res) => {
 	const highlightBook = await fetchDataById(highlightId);
 	res.render("index.ejs", {
 		highlight: highlightBook,
-		books
+		books,
+		orderBy
 	});
 });
 
 // Change ordering for books on the landing page
-app.post("/order", (req, res) => {
-	orderBy = req.body["order"];
+app.get("/order/:order", (req, res) => {
+	orderBy = req.params["order"];
 	res.redirect("/");
 });
 

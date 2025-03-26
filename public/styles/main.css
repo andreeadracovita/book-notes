@@ -3,7 +3,7 @@
     color: #98948e;
 }
 
-input, label, textarea, p {
+form > input, label, textarea {
     clear: left;
     display: block;
 }
@@ -65,7 +65,28 @@ a.nav-link:hover {
     font-style: normal;
 }
 
-/* Start rating display */
+/* Star rating */
+.star:before {
+    content: '★';
+}
+
+.yellow {
+    color: #ffc700;
+}
+
+.grey {
+    color: #ccc;
+}
+
+.small-rate {
+    font-size: 18px;
+}
+
+.large-rate {
+    font-size: 24px;
+}
+
+/* Star rating input */
 .rate {
     float: left;
     height: 28px;
