@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <%- include('partials/header.ejs'); -%>
 
+<section id="hero">
+	<div class="container">
+		<div class="row flex-lg-row align-items-center">
+			<div id="hero-text" class="col-lg-6">
+				<p class="display-6 mb-5 league-spartan text-uppercase">"The books that the world calls <span style="color: white">immoral</span> are books that show the world its own shame"</p>
+				<p class="lato-regular text-uppercase">Oscar Wilde, “The Picture of Dorian Grey”</p>
+			</div>
+			<div class="col-12 col-lg-6 d-flex justify-content-center">
+				<img src="https://cdn.dribbble.com/userupload/10564040/file/original-6d74f6c5ef4eb700e1ca6871046453ba.jpg?resize=752x957&vertical=center" class="d-block mx-lg-auto img-fluid" alt="forbidden-books-illustration" height="460" width="421" loading="lazy">
+			</div>
+		</div>
+	</div>
+</section>
+
 <form action="/order" method="post">
 <p>Order by: 
 	<input type="submit" name="order" value="title" id="title">, 
@@ -18,4 +32,4 @@
 	</div>
 <% } %>
 
-<% include('partials/footer.ejs'); -%>
+<%- include('partials/footer.ejs'); -%>

@@ -3,6 +3,45 @@ input, label, textarea, p {
     display: block;
 }
 
+#navbar {
+    background-color: #d9c8b4;
+}
+
+#hero {
+    background-color: #6a7326;
+}
+
+#footer {
+    background-color: #d9c8b4;
+}
+
+a {
+    color: black;
+}
+
+a.nav-link {
+    color: black;
+}
+
+a.nav-link:hover {
+    color: #db5461;
+}
+
+/*<weight>: Use a value from 100 to 900*/
+/*<uniquifier>: Use a unique and descriptive class name*/
+.league-spartan {
+  font-family: "League Spartan", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.lato-regular {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .rate {
     float: left;
     height: 46px;
