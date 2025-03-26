@@ -19,7 +19,7 @@
 			<h3><%= book.author %></h3>
 
 			<p>ISBN: <%= book.isbn %>
-			<p>Date read: <%= date %></p>
+			<p>Date read: <%= book.date_read.toLocaleString('default', { day: 'numeric', month: 'short', year: 'numeric' }) %></p>
 			<h4>My Rating:</h4>
 			<div class="rate">
 				<% for (let i = 5; i >= 1; i--) { %>

@@ -130,8 +130,7 @@ app.get("/book/:id", async (req, res) => {
 	const foundBook = await fetchDataById(id);
 	if (foundBook) {
 		res.render("book.ejs", {
-			book: foundBook,
-			date: formatDate(foundBook.date_read)
+			book: foundBook
 		});
 	} else {
 		res.redirect("/");
