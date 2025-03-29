@@ -1,6 +1,26 @@
 /* Color theme */
+:root {
+    --olive: #6a7326;
+    --light-brown: #d9c8b4;
+    --dark-brown: #8c7e6d;
+    --light-grey: #98948e;
+    --yellow: #ffc700;
+    --white: #ffffff;
+}
+
 .light-text {
-    color: #98948e;
+    color: var(--light-grey);
+}
+
+.button {
+    border: solid 1px var(--olive);
+    background-color: var(--olive);
+    color: var(--white);
+}
+
+.button:hover {
+    border: solid 1px var(--olive);
+    color: var(--olive);
 }
 
 form > input, label, textarea {
@@ -16,15 +36,15 @@ p {
 
 /* Sections */
 #navbar {
-    background-color: #d9c8b4;
+    background-color: var(--light-brown);
 }
 
 #hero {
-    background-color: #6a7326;
+    background-color: var(--olive);
 }
 
 #footer {
-    background-color: #d9c8b4;
+    background-color: var(--light-brown);
 }
 
 a {
@@ -71,11 +91,11 @@ a.nav-link:hover {
 }
 
 .yellow {
-    color: #ffc700;
+    color: var(--yellow);
 }
 
 .grey {
-    color: #8d7d6d;
+    color: var(--dark-brown);
 }
 
 .small-rate {
@@ -102,7 +122,7 @@ a.nav-link:hover {
     white-space: nowrap;
     cursor: pointer;
     font-size: 24px;
-    color: #8d7d6d;
+    color: var(--dark-brown);
 }
 .rate:not(:checked) > label:before {
     content: '★ ';
