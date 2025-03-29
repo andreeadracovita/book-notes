@@ -5,8 +5,8 @@
 	<div class="container">
 		<div class="row flex-lg-row align-items-center">
 			<div id="hero-text" class="col-lg-6">
-				<p class="display-6 mb-5 league-spartan text-uppercase">"The books that the world calls <span style="color: white">immoral</span> are books that show the world its own shame"</p>
-				<p class="lato-regular text-uppercase">Oscar Wilde, “The Picture of Dorian Grey”</p>
+				<h1 class="mb-5 league-spartan text-uppercase text-end">"The books that the world calls <span style="color: white">immoral</span> are books that show the world its own shame"</h1>
+				<p class="lato-regular text-uppercase text-end">Oscar Wilde, “The Picture of Dorian Grey”</p>
 			</div>
 			<div class="col-12 col-lg-6 d-flex justify-content-center">
 				<img src="https://cdn.dribbble.com/userupload/10564040/file/original-6d74f6c5ef4eb700e1ca6871046453ba.jpg" class="d-block mx-lg-auto img-fluid" alt="forbidden-books-illustration" height="460" width="421" loading="lazy">
@@ -48,7 +48,7 @@
 		</div>
 	</section>
 	<% } %>
-	<section id="list" class="mt-5">
+	<section id="list" class="my-5">
 		<div id="list-header" class="row flex-lg-row">
 			<h2 class="col-6 league-spartan mb-3">My Library</h2>
 			<div class="col-6 d-flex justify-content-end">
@@ -57,8 +57,8 @@
 						<span class="text-capitalize"><% if(locals.orderBy) { %><%=orderBy%><% } %></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item light-text" href="/order/newest">Newest</a></li>
-						<li><a class="dropdown-item light-text" href="/order/title">Title</a></li>
+						<li><a class="dropdown-item light-text border-bottom" href="/order/newest">Newest</a></li>
+						<li><a class="dropdown-item light-text border-bottom" href="/order/title">Title</a></li>
 						<li><a class="dropdown-item light-text" href="/order/rating">Rating</a></li>
 					</ul>
 				</div>

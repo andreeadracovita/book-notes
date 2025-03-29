@@ -75,7 +75,7 @@ a.nav-link:hover {
 }
 
 .grey {
-    color: #ccc;
+    color: #8d7d6d;
 }
 
 .small-rate {
@@ -92,17 +92,17 @@ a.nav-link:hover {
     height: 28px;
 }
 .rate:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
+    position: absolute;
+    top: -9999px;
 }
 .rate:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:24px;
-    color:#ccc;
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 24px;
+    color: #8d7d6d;
 }
 .rate:not(:checked) > label:before {
     content: '★ ';
