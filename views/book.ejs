@@ -27,9 +27,13 @@
 					<span class="star grey large-rate"></span>
 				<% } %>
 			</div>
-			<p><%- book.short_description.replace(/(?:\r\n|\r|\n)/g, '<br>') %></p>
+			<% if (book.short_description) { %>
+				<p><%- book.short_description.replace(/(?:\r\n|\r|\n)/g, '<br>') %></p>
+			<% } %>
 			<h3 class="league-spartan">Notes</h3>
-			<p><%- book.notes.replace(/(?:\r\n|\r|\n)/g, '<br>') %></p>
+			<% if (book.notes) { %>
+				<p><%- book.notes.replace(/(?:\r\n|\r|\n)/g, '<br>') %></p>
+			<% } %>
 		</div>
 	</div>
 </div>

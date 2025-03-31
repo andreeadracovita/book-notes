@@ -126,7 +126,9 @@ app.get("/order/:order", (req, res) => {
 
 // Route to render the edit page
 app.get("/new", (req, res) => {
-	res.render("edit.ejs");
+	res.render("edit.ejs", {
+		date: formatDate(new Date())
+	});
 });
 
 // Route to render a specific book page by id

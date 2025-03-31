@@ -1,76 +1,50 @@
 <!DOCTYPE html>
 <%- include('partials/header.ejs'); -%>
 
-<% if (locals.book) { %>
-	<!-- Edit/remove book -->
-	<form method="post" action="/edit/<%= book.id %>">
+<form method="post"
+	<% if(locals.book) { %>
+		action="/edit/<%= book.id %>"
+	<% } else { %>
+		action="/add"
+	<% } %> >
+	<% if(locals.book) { %>
 		<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" />
-		<label for="title">Title</label>
-		<input id="title" type="text" name="title" value="<%= book.title %>">
+	<% } %>
+	<label for="title">Title</label>
+	<input id="title" type="text" name="title" <% if(locals.book) { %> value="<%= book.title %>" <% } %> >
 
-		<label for="author">Author</label>
-		<input id="author" type="text" name="author" value="<%= book.author %>">
+	<label for="author">Author</label>
+	<input id="author" type="text" name="author" <% if(locals.book) { %> value="<%= book.author %>" <% } %> >
 
-		<label for="isbn">ISBN</label>
-		<input id="isbn" type="text" name="isbn" value="<%= book.isbn %>">
-		<label for="date_read">Date read</label>
-		<input id="date_read" type="date" name="date_read" value="<%= date %>">
-		<label for="rating">My rating</label>
-		<div class="rate">
-			<% for (let i = 5; i >= 1; i--) { %>
-				<input
-					type="radio"
-					id="star<%= i %>"
-					name="rating"
-					value="<%= i %>"
-					<% if (book.rating === i) { %>checked<% } %>
-				/>
-				<label for="star<%= i %>" title="text"><%= i %> stars</label>
-			<% } %>
-		</div>
+	<label for="isbn">ISBN</label>
+	<input id="isbn" type="text" name="isbn" <% if(locals.book) { %> value="<%= book.isbn %>" <% } %> >
+	<label for="date_read">Date read</label>
+	<input id="date_read" type="date" name="date_read" <% if(locals.date) { %> value="<%= date %>" <% } %> >
+	<label for="rating">My rating</label>
+	<div class="rate">
+		<% for (let i = 5; i >= 1; i--) { %>
+			<input
+				type="radio"
+				id="star<%= i %>"
+				name="rating"
+				value="<%= i %>"
+				<% if (locals.book && book.rating === i) { %>checked<% } %>
+			/>
+			<label for="star<%= i %>" title="text"><%= i %> stars</label>
+		<% } %>
+	</div>
 
-		<label for="short_description">Description</label>
-	    <textarea id="short_description" name="short_description" rows="10"><%= book.short_description %></textarea>
-	    <label for="notes">Notes</label>
-	    <textarea id="notes" name="notes" rows="10"><%= book.notes %></textarea>
+	<label for="short_description">Description</label>
+	<textarea id="short_description" name="short_description" rows="10"><% if(locals.book) { %><%= book.short_description %><% } %></textarea>
+	<label for="notes">Notes</label>
+	<textarea id="notes" name="notes" rows="10"><% if(locals.book) { %><%= book.notes %><% } %></textarea>
 
-	    <button style="background: green" name="action" value="save">Save</button><br />
-	    <button style="background: orange" name="action" value="remove">Remove</button>
-	</form>
-<% } else { %>
-	<!-- New book -->
-	<form method="post" action="/add">
-		<label for="title">Title</label>
-		<input id="title" type="text" name="title">
-
-		<label for="author">Author</label>
-		<input id="author" type="text" name="author">
-
-		<label for="isbn">ISBN</label>
-		<input id="isbn" type="text" name="isbn">
-		<label for="date_read">Date read</label>
-		<input id="date_read" type="date" name="date_read" value="<%= new Date() %>">
-		<label for="rating">My rating</label>
-		<div class="rate">
-			<% for (let i = 5; i >= 1; i--) { %>
-				<input
-					type="radio"
-					id="star<%= i %>"
-					name="rating"
-					value="<%= i %>"
-				/>
-				<label for="star<%= i %>" title="text"><%= i %> stars</label>
-			<% } %>
-		</div>
-
-		<label for="short_description">Description</label>
-	    <textarea id="short_description" name="short_description" rows="10"></textarea>
-	    <label for="notes">Notes</label>
-	    <textarea id="notes" name="notes" rows="10"></textarea>
-
-	    <button style="background: green" value="submit">Add book</button>
-	</form>
-<% } %>
-
+	<% if(locals.book) { %>
+		<button name="action" value="save">Save</button>
+		<button name="action" value="remove">Remove</button>
+	<% } else { %>
+		<button value="submit">Add book</button>
+	<% } %>
+</form>
 
 <%- include('partials/footer.ejs'); -%>
