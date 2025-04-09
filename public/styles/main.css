@@ -23,11 +23,6 @@
     color: var(--olive);
 }
 
-form > input, label, textarea {
-    clear: left;
-    display: block;
-}
-
 p {
     font-family: "Lato", sans-serif;
     font-weight: 400;
@@ -107,37 +102,45 @@ a.nav-link:hover {
 }
 
 /* Star rating input */
-.rate {
-    float: left;
-    height: 28px;
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
 }
-.rate:not(:checked) > input {
-    position: absolute;
-    top: -9999px;
+
+.rating input {
+  display: none;
 }
-.rate:not(:checked) > label {
-    float: right;
-    width: 1em;
-    overflow: hidden;
-    white-space: nowrap;
-    cursor: pointer;
-    font-size: 24px;
-    color: var(--dark-brown);
+
+.rating label {
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--dark-brown);
 }
-.rate:not(:checked) > label:before {
-    content: '★ ';
+
+.rating label:hover,
+.rating label:hover ~ label { /* reason why the stars are in reverse order in the html */
+  color: var(--yellow);
 }
-.rate > input:checked ~ label {
-    color: #ffc700;    
+
+.rating input:checked ~ label {
+  color: var(--yellow);
 }
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
+
+/* Forms */
+.form-field {
+    border: 1px solid var(--light-grey);
+    border-radius: 10px;
 }
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
+
+.cover-placeholder {
+    height: 400px;
+    width: 300px;
+    border: 1px solid var(--light-grey);
+    border-radius: 10px;
+    color: var(--light-grey);
+}
+
+.cover {
+    object-fit: scale-down;
 }

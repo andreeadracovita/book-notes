@@ -1,50 +1,99 @@
 <!DOCTYPE html>
 <%- include('partials/header.ejs'); -%>
 
-<form method="post"
-	<% if(locals.book) { %>
-		action="/edit/<%= book.id %>"
-	<% } else { %>
-		action="/add"
-	<% } %> >
-	<% if(locals.book) { %>
-		<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" />
-	<% } %>
-	<label for="title">Title</label>
-	<input id="title" type="text" name="title" <% if(locals.book) { %> value="<%= book.title %>" <% } %> >
-
-	<label for="author">Author</label>
-	<input id="author" type="text" name="author" <% if(locals.book) { %> value="<%= book.author %>" <% } %> >
-
-	<label for="isbn">ISBN</label>
-	<input id="isbn" type="text" name="isbn" <% if(locals.book) { %> value="<%= book.isbn %>" <% } %> >
-	<label for="date_read">Date read</label>
-	<input id="date_read" type="date" name="date_read" <% if(locals.date) { %> value="<%= date %>" <% } %> >
-	<label for="rating">My rating</label>
-	<div class="rate">
-		<% for (let i = 5; i >= 1; i--) { %>
-			<input
-				type="radio"
-				id="star<%= i %>"
-				name="rating"
-				value="<%= i %>"
-				<% if (locals.book && book.rating === i) { %>checked<% } %>
-			/>
-			<label for="star<%= i %>" title="text"><%= i %> stars</label>
-		<% } %>
-	</div>
-
-	<label for="short_description">Description</label>
-	<textarea id="short_description" name="short_description" rows="10"><% if(locals.book) { %><%= book.short_description %><% } %></textarea>
-	<label for="notes">Notes</label>
-	<textarea id="notes" name="notes" rows="10"><% if(locals.book) { %><%= book.notes %><% } %></textarea>
-
-	<% if(locals.book) { %>
-		<button name="action" value="save">Save</button>
-		<button name="action" value="remove">Remove</button>
-	<% } else { %>
-		<button value="submit">Add book</button>
-	<% } %>
-</form>
+<div class="container">
+	<form
+		method="post"
+		<% if (locals.book) { %> action="/edit/<%= book.id %>" <% } else { %> action="/add" <% } %>
+		>
+		<div class="row my-5">
+			<div class="col-4 text-center px-5">
+				<% if (locals.book) { %>
+					<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-L.jpg" class="mb-3 cover" height="400" />
+					<button class="btn button w-75 mb-1" name="action" value="save">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+							<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+						</svg>
+						Save
+					</button>
+					<button class="btn button w-75" name="action" value="remove">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+							  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+						</svg>
+						Remove
+					</button>
+				<% } else { %>
+					<div class="cover-placeholder mb-3 d-flex align-items-center justify-content-center">
+						<p class="h2">Cover</p>
+					</div>
+					<button class="btn button w-100" value="submit">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+							<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+						</svg>
+						Add
+					</button>
+				<% } %>
+			</div>
+			
+			<div class="col-8">
+				<h1 class="league-spartan">Add a new book</h1>
+				<div class="row mb-2">
+					<div class="col-2">
+						<label for="title" class="form-label lato-regular">Title</label>
+					</div>
+					<div class="col-10">
+						<input id="title" type="text" name="title" class="w-100 form-control" <% if(locals.book) { %> value="<%= book.title %>" <% } %> >
+					</div>
+				</div>
+				<div class="row mb-2">
+					<div class="col-2">
+						<label for="author" class="form-label lato-regular">Author</label>
+					</div>
+					<div class="col-10">
+						<input id="author" type="text" name="author" class="w-100 form-control" <% if(locals.book) { %> value="<%= book.author %>" <% } %> >
+					</div>
+				</div>
+				<div class="row mb-2">
+					<div class="col-2">
+						<label for="date_read">Date read</label>
+					</div>
+					<div class="col-10">
+						<input id="date_read" type="date" name="date_read" class="form-control" <% if(locals.date) { %> value="<%= date %>" <% } %> >
+					</div>
+				</div>
+				<div class="row mb-2">
+					<div class="col-2">
+						<label for="isbn" class="form-label lato-regular">ISBN</label>
+					</div>
+					<div class="col-4">
+						<input id="isbn" type="text" name="isbn" class="form-control" <% if(locals.book) { %> value="<%= book.isbn %>" <% } %> >
+					</div>
+				</div>
+				<div class="row mb-3">
+					<div class="rating">
+						<% for (let i = 5; i >= 1; i--) { %>
+							<input
+								type="radio"
+								id="star<%= i %>"
+								name="rating"
+								value="<%= i %>"
+								<% if (locals.book && book.rating === i) { %>checked<% } %>
+							/>
+							<label for="star<%= i %>" title="<%= i %> stars">★</label>
+						<% } %>
+					</div>
+				</div>
+				<div class="row mb-3">
+					<label for="short_description" class="h4 league-spartan">Description</label>
+					<textarea id="short_description" name="short_description" rows="10" class="form-control"><% if(locals.book) { %><%= book.short_description %><% } %></textarea>
+				</div>
+				<div class="row">
+					<label for="notes" class="h4 league-spartan">Notes</label>
+					<textarea id="notes" name="notes" rows="10" class="form-control"><% if(locals.book) { %><%= book.notes %><% } %></textarea>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
 
 <%- include('partials/footer.ejs'); -%>

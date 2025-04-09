@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="row my-5">
 		<div class="col-4 text-center">
-			<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-L.jpg" class="mb-3" />
+			<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-L.jpg" class="mb-3 w-100 cover" height="400" />
 			<form method="post" action="/edit/<%= book.id %>">
 				<button class="btn button w-75" name="action" value="edit">
 					<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">

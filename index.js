@@ -20,7 +20,7 @@ app.use(express.static("public"));
 
 let orderBy = "newest";
 
-const highlightId = 1;
+let highlightId = 1;
 
 async function fetchData() {
 	try {
@@ -146,7 +146,6 @@ app.get("/book/:id", async (req, res) => {
 
 // Create a new book
 app.post("/add", async (req, res) => {
-	const newBook = req.body;
 	const result = await addData(req.body);
 	if (result) {
 		res.redirect(`/book/${ result.id }`);
