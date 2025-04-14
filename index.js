@@ -169,13 +169,16 @@ app.post("/edit/:id", async (req, res) => {
 		} else {
 			res.redirect(`/book/${ id }`);
 		}
+	} else if (req.body["action"] === "highlight") {
+		highlightId = id;
+		res.redirect("/");
 	} else if (req.body["action"] === "save") {
 		// Save edit for book by id
 		await updateDataWithId(id, req.body);
 		res.redirect(`/book/${ id }`);
 	} else if (req.body["action"] === "remove") {
 		// Remove book by id
-		removeData(id);
+		await removeData(id);
 		res.redirect("/");
 	}
 });
