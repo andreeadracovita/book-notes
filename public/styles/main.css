@@ -149,12 +149,24 @@ a.nav-link:hover {
     color: var(--light-grey);
 }
 
-.cover {
-    object-fit: scale-down;
+.grid-cover {
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px var(--dark-brown);
 }
 
-.library-cover {
+.zoom {
+    transition: transform .2s;
+}
+
+.zoom:hover {
+    transform: scale(1.1);
+}
+
+.detailed-cover {
     object-fit: scale-down;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px var(--dark-brown);
 }
 
 /* Mobile */
@@ -173,6 +185,13 @@ a.nav-link:hover {
 
     #highlight-rating {
         display: none;
+    }
+}
+
+/* Intermediary */
+@media (max-width: 991px) {
+    .book-title {
+        text-align: center;
     }
 }
 

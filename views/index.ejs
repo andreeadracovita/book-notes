@@ -20,9 +20,9 @@
 		<section id="highlight" class="mt-5">
 			<h2 class="league-spartan mb-3">Highlight</h2>
 			<div class="row flex-row">
-				<div id="highlight-cover" class="col-4 col-lg-2">
+				<div class="col-4 col-lg-2">
 					<a href="/book/<%= highlight.id %>">
-						<img src="https://covers.openlibrary.org/b/isbn/<%= highlight.isbn %>-M.jpg" loading="lazy" class="w-100 cover"/>
+						<img src="https://covers.openlibrary.org/b/isbn/<%= highlight.isbn %>-M.jpg" loading="lazy" class="w-100 grid-cover"/>
 					</a>
 				</div>
 				<div id="highlight-detail" class="col-8 col-lg-10">
@@ -70,7 +70,7 @@
 				<% for(let book of books){ %>
 					<div class="col text-center">
 						<a href="/book/<%= book.id %>">
-							<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" loading="lazy" height="240" class="w-100 library-cover mt-4"/>
+							<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" loading="lazy" height="320" class="w-100 grid-cover zoom mt-4"/>
 							<h3 class="lead league-spartan mt-3"><%= book.title %></h3>
 							<p class="lato-regular small mb-1"><%= book.author %></p>
 							<p class="lato-regular small mb-1">Date read: <%= book.date_read.toLocaleString('default', { day: 'numeric', month: 'short', year: 'numeric' }) %></p>
