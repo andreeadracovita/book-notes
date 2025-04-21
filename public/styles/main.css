@@ -149,14 +149,14 @@ a.nav-link:hover {
     object-fit: scale-down;
 }
 
+.library-cover {
+    object-fit: scale-down;
+}
+
 /* Mobile */
 @media (max-width: 767px) {
     .hero-text {
         text-align: center;
-    }
-
-    #highlight-cover {
-        object-fit: scale-down;
     }
 
     #highlight-rating {
@@ -168,5 +168,9 @@ a.nav-link:hover {
 @media (min-width: 768px) {
     .hero-text {
         text-align: right;
+    }
+
+    #sort-dropdown {
+        justify-content: end;
     }
 }

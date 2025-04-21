@@ -21,7 +21,7 @@
 		<div class="row flex-row">
 			<div id="highlight-cover" class="col-4 col-lg-2">
 				<a href="/book/<%= highlight.id %>">
-					<img src="https://covers.openlibrary.org/b/isbn/<%= highlight.isbn %>-M.jpg" loading="lazy" id="highlight-cover" class="w-100"/>
+					<img src="https://covers.openlibrary.org/b/isbn/<%= highlight.isbn %>-M.jpg" loading="lazy" class="w-100 cover"/>
 				</a>
 			</div>
 			<div id="highlight-detail" class="col-8 col-lg-10">
@@ -49,11 +49,11 @@
 		</div>
 	</section>
 	<% } %>
-	<section id="list" class="my-5">
-		<div id="list-header" class="row flex-md-row gx-2">
-			<h2 class="col-6 league-spartan mb-3">My Library</h2>
-			<div class="col-6 d-flex justify-content-end">
-				<div class="dropdown">
+	<section id="library" class="my-5">
+		<div id="library-header" class="row flex-md-row">
+			<h2 class="col-12 col-md-8 league-spartan mb-3">My Library</h2>
+			<div id="sort-dropdown" class="col-12 col-md-4 d-flex">
+				<div class="dropdown mb-2 mb-md-0">
 					<a class="dropdown-toggle light-text" data-bs-toggle="dropdown" aria-expanded="false">
 						<span class="text-capitalize"><% if(locals.orderBy) { %><%=orderBy%><% } %></span>
 					</a>
@@ -65,10 +65,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="row row-cols-5 gx-5 gy-5">
+		<div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 gx-5">
 			<% for(let book of books){ %>
-				<div class="col">
-					<a href="/book/<%= book.id %>"><img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" height="270"/>
+				<div class="col text-center">
+					<a href="/book/<%= book.id %>">
+						<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" loading="lazy" height="240" class="w-100 library-cover mt-4"/>
 						<h3 class="lead league-spartan mt-3"><%= book.title %></h3>
 						<p class="lato-regular small mb-1"><%= book.author %></p>
 						<p class="lato-regular small mb-1">Date read: <%= book.date_read.toLocaleString('default', { day: 'numeric', month: 'short', year: 'numeric' }) %></p>
