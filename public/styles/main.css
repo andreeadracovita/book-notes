@@ -8,6 +8,10 @@
     --white: #ffffff;
 }
 
+.main-padding {
+    padding-top: 3rem;
+}
+
 .light-text {
     color: var(--light-grey);
 }
@@ -32,12 +36,10 @@ p {
 /* Sections */
 nav {
     background-color: var(--light-brown);
-/*    border-bottom: 1px solid var(--dark-brown);*/
 }
 
 #hero {
     background-color: var(--olive);
-    padding-top: 4.5rem;
 }
 
 #footer {
@@ -157,6 +159,10 @@ a.nav-link:hover {
 
 /* Mobile */
 @media (max-width: 767px) {
+    .main-padding {
+        padding-top: 4.5rem;
+    }
+
     .border-bottom-custom-mobile {
         border-bottom: 1px solid var(--light-grey);
     }
