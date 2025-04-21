@@ -55,6 +55,10 @@ a.nav-link:hover {
     color: #db5461;
 }
 
+#hero-image {
+    clip-path: inset(24px 24px);
+}
+
 /* Truncate book description */
 .truncate {
    overflow: hidden;
@@ -101,7 +105,6 @@ a.nav-link:hover {
     font-size: 24px;
 }
 
-/* Star rating input */
 .rating {
     display: flex;
     flex-direction: row-reverse;
@@ -113,7 +116,7 @@ a.nav-link:hover {
 }
 
 .rating label {
-  font-size: 24px;
+  font-size: 1em;
   cursor: pointer;
   color: var(--dark-brown);
 }
@@ -133,6 +136,7 @@ a.nav-link:hover {
     border-radius: 10px;
 }
 
+/* Cover */
 .cover-placeholder {
     height: 400px;
     width: 300px;
@@ -143,4 +147,26 @@ a.nav-link:hover {
 
 .cover {
     object-fit: scale-down;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .hero-text {
+        text-align: center;
+    }
+
+    #highlight-cover {
+        object-fit: scale-down;
+    }
+
+    #highlight-rating {
+        display: none;
+    }
+}
+
+/* Tablets, desktop */
+@media (min-width: 768px) {
+    .hero-text {
+        text-align: right;
+    }
 }
