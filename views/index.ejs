@@ -1,91 +1,93 @@
 <!DOCTYPE html>
 <%- include('partials/header.ejs'); -%>
 
-<section id="hero">
+<main role="main">
+	<section id="hero">
+		<div class="container">
+			<div class="row flex-md-row align-items-center">
+				<div id="hero-text" class="col-md-6">
+					<p class="h1 mt-5 mb-3 mt-md-0 league-spartan text-uppercase hero-text">"The books that the world calls <span style="color: white">immoral</span> are books that show the world its own shame"</p>
+					<p class="lato-regular text-uppercase hero-text">Oscar Wilde, “The Picture of Dorian Grey”</p>
+				</div>
+				<div class="col-12 col-md-6 d-flex justify-content-center hero-text">
+					<img id="hero-image" src="https://cdn.dribbble.com/userupload/10564040/file/original-6d74f6c5ef4eb700e1ca6871046453ba.jpg" class="d-block mx-lg-auto img-fluid" alt="forbidden-books-illustration" height="460" width="421" loading="lazy">
+				</div>
+			</div>
+		</div>
+	</section>
 	<div class="container">
-		<div class="row flex-md-row align-items-center">
-			<div id="hero-text" class="col-md-6">
-				<p class="h1 mt-5 mt-md-0 mb-5 league-spartan text-uppercase hero-text">"The books that the world calls <span style="color: white">immoral</span> are books that show the world its own shame"</p>
-				<p class="lato-regular text-uppercase hero-text">Oscar Wilde, “The Picture of Dorian Grey”</p>
-			</div>
-			<div class="col-12 col-md-6 d-flex justify-content-center hero-text">
-				<img id="hero-image" src="https://cdn.dribbble.com/userupload/10564040/file/original-6d74f6c5ef4eb700e1ca6871046453ba.jpg" class="d-block mx-lg-auto img-fluid" alt="forbidden-books-illustration" height="460" width="421" loading="lazy">
-			</div>
-		</div>
-	</div>
-</section>
-<div class="container">
-	<% if (locals.highlight) { %>
-	<section id="highlight" class="mt-5">
-		<h2 class="league-spartan mb-3">Highlight</h2>
-		<div class="row flex-row">
-			<div id="highlight-cover" class="col-4 col-lg-2">
-				<a href="/book/<%= highlight.id %>">
-					<img src="https://covers.openlibrary.org/b/isbn/<%= highlight.isbn %>-M.jpg" loading="lazy" class="w-100 cover"/>
-				</a>
-			</div>
-			<div id="highlight-detail" class="col-8 col-lg-10">
-				<h3 class="league-spartan"><%= highlight.title %></h3>
-				<p class="lato-regular pb-3 border-bottom"><%= highlight.author %></p>
+		<% if (locals.highlight) { %>
+		<section id="highlight" class="mt-5">
+			<h2 class="league-spartan mb-3">Highlight</h2>
+			<div class="row flex-row">
+				<div id="highlight-cover" class="col-4 col-lg-2">
+					<a href="/book/<%= highlight.id %>">
+						<img src="https://covers.openlibrary.org/b/isbn/<%= highlight.isbn %>-M.jpg" loading="lazy" class="w-100 cover"/>
+					</a>
+				</div>
+				<div id="highlight-detail" class="col-8 col-lg-10">
+					<h3 class="league-spartan"><%= highlight.title %></h3>
+					<p class="lato-regular pb-3 border-bottom"><%= highlight.author %></p>
 
-				<div class="row flex-md-row">
-					<div class="col-lg-8">
-						<p class="truncate light-text"><%= highlight.short_description %></p>
-						<a href="/book/<%= highlight.id %>"><p class="text-uppercase small">See more details</p></a>
-					</div>
-					<div id="highlight-rating" class="col-lg-4">
-						<h4 class="league-spartan">My rating</h4>
-						<div>
-							<% for (let i = 1; i <= highlight.rating; i++) { %>
-								<span class="star yellow large-rate"></span>
-							<% } %>
-							<% for (let i = highlight.rating + 1; i <= 5; i++) { %>
-								<span class="star grey large-rate"></span>
-							<% } %>
+					<div class="row flex-md-row">
+						<div class="col-lg-8">
+							<p class="truncate light-text"><%= highlight.short_description %></p>
+							<a href="/book/<%= highlight.id %>"><p class="text-uppercase small">See more details</p></a>
+						</div>
+						<div id="highlight-rating" class="col-lg-4">
+							<h4 class="league-spartan">My rating</h4>
+							<div>
+								<% for (let i = 1; i <= highlight.rating; i++) { %>
+									<span class="star yellow large-rate"></span>
+								<% } %>
+								<% for (let i = highlight.rating + 1; i <= 5; i++) { %>
+									<span class="star grey large-rate"></span>
+								<% } %>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	<% } %>
-	<section id="library" class="my-5">
-		<div id="library-header" class="row flex-md-row">
-			<h2 class="col-12 col-md-8 league-spartan mb-3">My Library</h2>
-			<div id="sort-dropdown" class="col-12 col-md-4 d-flex">
-				<div class="dropdown mb-2 mb-md-0">
-					<a class="dropdown-toggle light-text" data-bs-toggle="dropdown" aria-expanded="false">
-						<span class="text-capitalize"><% if(locals.orderBy) { %><%=orderBy%><% } %></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item light-text border-bottom" href="/order/newest">Newest</a></li>
-						<li><a class="dropdown-item light-text border-bottom" href="/order/title">Title</a></li>
-						<li><a class="dropdown-item light-text" href="/order/rating">Rating</a></li>
-					</ul>
+		</section>
+		<% } %>
+		<section id="library" class="my-5">
+			<div id="library-header" class="row flex-md-row">
+				<h2 class="col-12 col-md-8 league-spartan mb-3">My Library</h2>
+				<div id="sort-dropdown" class="col-12 col-md-4 d-flex">
+					<div class="dropdown mb-2 mb-md-0">
+						<a class="dropdown-toggle light-text" data-bs-toggle="dropdown" aria-expanded="false">
+							<span class="text-capitalize"><% if(locals.orderBy) { %><%=orderBy%><% } %></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item light-text border-bottom" href="/order/newest">Newest</a></li>
+							<li><a class="dropdown-item light-text border-bottom" href="/order/title">Title</a></li>
+							<li><a class="dropdown-item light-text" href="/order/rating">Rating</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 gx-5">
-			<% for(let book of books){ %>
-				<div class="col text-center">
-					<a href="/book/<%= book.id %>">
-						<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" loading="lazy" height="240" class="w-100 library-cover mt-4"/>
-						<h3 class="lead league-spartan mt-3"><%= book.title %></h3>
-						<p class="lato-regular small mb-1"><%= book.author %></p>
-						<p class="lato-regular small mb-1">Date read: <%= book.date_read.toLocaleString('default', { day: 'numeric', month: 'short', year: 'numeric' }) %></p>
-						<div>
-							<% for (let i = 1; i <= book.rating; i++) { %>
-								<span class="star yellow small-rate"></span>
-							<% } %>
-							<% for (let i = book.rating + 1; i <= 5; i++) { %>
-								<span class="star grey small-rate"></span>
-							<% } %>
-						</div>
-					</a>
-				</div>
-			<% } %>
-		</div>
-	</section>
-</div>
+			<div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 gx-5">
+				<% for(let book of books){ %>
+					<div class="col text-center">
+						<a href="/book/<%= book.id %>">
+							<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" loading="lazy" height="240" class="w-100 library-cover mt-4"/>
+							<h3 class="lead league-spartan mt-3"><%= book.title %></h3>
+							<p class="lato-regular small mb-1"><%= book.author %></p>
+							<p class="lato-regular small mb-1">Date read: <%= book.date_read.toLocaleString('default', { day: 'numeric', month: 'short', year: 'numeric' }) %></p>
+							<div>
+								<% for (let i = 1; i <= book.rating; i++) { %>
+									<span class="star yellow small-rate"></span>
+								<% } %>
+								<% for (let i = book.rating + 1; i <= 5; i++) { %>
+									<span class="star grey small-rate"></span>
+								<% } %>
+							</div>
+						</a>
+					</div>
+				<% } %>
+			</div>
+		</section>
+	</div>
+</main>
 
 <%- include('partials/footer.ejs'); -%>

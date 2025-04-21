@@ -13,13 +13,13 @@
 }
 
 .button {
-    border: solid 1px var(--olive);
+    border: 1px solid var(--olive);
     background-color: var(--olive);
     color: var(--white);
 }
 
 .button:hover {
-    border: solid 1px var(--olive);
+    border: 1px solid var(--olive);
     color: var(--olive);
 }
 
@@ -30,12 +30,14 @@ p {
 }
 
 /* Sections */
-#navbar {
+nav {
     background-color: var(--light-brown);
+/*    border-bottom: 1px solid var(--dark-brown);*/
 }
 
 #hero {
     background-color: var(--olive);
+    padding-top: 4.5rem;
 }
 
 #footer {
@@ -155,6 +157,10 @@ a.nav-link:hover {
 
 /* Mobile */
 @media (max-width: 767px) {
+    .border-bottom-custom-mobile {
+        border-bottom: 1px solid var(--light-grey);
+    }
+
     .hero-text {
         text-align: center;
     }
