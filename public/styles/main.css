@@ -190,7 +190,7 @@ a.nav-link:hover {
 
 /* Intermediary */
 @media (max-width: 991px) {
-    .book-title {
+    .conditional-center {
         text-align: center;
     }
 }
