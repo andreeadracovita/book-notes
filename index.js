@@ -183,6 +183,20 @@ app.post("/edit/:id", async (req, res) => {
 	}
 });
 
+// Refresh on edit page
+app.get("/edit/:id", async (req, res) => {
+	const id = parseInt(req.params.id);
+	const foundBook = await fetchDataById(id);
+	if (foundBook) {
+		res.render("edit.ejs", {
+			book: foundBook,
+			date: formatDate(foundBook.date_read)
+		});
+	} else {
+		res.redirect(`/book/${ id }`);
+	}
+});
+
 app.listen(port, () => {
 	console.log(`Server running on port ${port}`);
 });
