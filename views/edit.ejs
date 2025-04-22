@@ -57,7 +57,7 @@
 							<label for="title" class="form-label lato-regular">Title</label>
 						</div>
 						<div class="col-10">
-							<input id="title" type="text" name="title" class="w-100 form-control" <% if(locals.book) { %> value="<%= book.title %>" <% } %> >
+							<input id="title" type="text" name="title" class="w-100 form-control" required <% if(locals.book) { %> value="<%= book.title %>" <% } %> >
 						</div>
 					</div>
 					<div class="row mb-2">
@@ -65,7 +65,7 @@
 							<label for="author" class="form-label lato-regular">Author</label>
 						</div>
 						<div class="col-10">
-							<input id="author" type="text" name="author" class="w-100 form-control" <% if(locals.book) { %> value="<%= book.author %>" <% } %> >
+							<input id="author" type="text" name="author" class="w-100 form-control" required <% if(locals.book) { %> value="<%= book.author %>" <% } %> >
 						</div>
 					</div>
 					<div class="row mb-2">
@@ -73,7 +73,7 @@
 							<label for="date_read">Date read</label>
 						</div>
 						<div class="col-10">
-							<input id="date_read" type="date" name="date_read" class="form-control" <% if(locals.date) { %> value="<%= date %>" <% } %> >
+							<input id="date_read" type="date" name="date_read" class="form-control" required <% if(locals.date) { %> value="<%= date %>" <% } %> >
 						</div>
 					</div>
 					<div class="row mb-2">
@@ -81,11 +81,11 @@
 							<label for="isbn" class="form-label lato-regular">ISBN</label>
 						</div>
 						<div class="col-4">
-							<input id="isbn" type="text" name="isbn" class="form-control" <% if(locals.book) { %> value="<%= book.isbn %>" <% } %> >
+							<input id="isbn" type="text" name="isbn" class="form-control" required minlength="10" maxlength="13" <% if(locals.book) { %> value="<%= book.isbn %>" <% } %> >
 						</div>
 					</div>
 					<div class="row mb-3">
-						<h4 class="league-spartan">My rating</h4>
+						<label for="rating" class="fs-5 form-label league-spartan">My rating</label>
 						<div class="rating">
 							<% for (let i = 5; i >= 1; i--) { %>
 								<input
@@ -98,14 +98,19 @@
 								<label for="star<%= i %>" title="<%= i %> stars" class="">★</label>
 							<% } %>
 						</div>
+						<small class="text-body-secondary">(Optional)</small>
 					</div>
 					<div class="row mb-3">
-						<label for="short_description" class="h4 league-spartan">Description</label>
-						<textarea id="short_description" name="short_description" rows="10" class="form-control"><% if(locals.book) { %><%= book.short_description %><% } %></textarea>
+						<label for="short_description" class="fs-5 form-label league-spartan">Description</label>
+						<textarea id="short_description" name="short_description" rows="10" class="form-control" maxlength="1000"><% if(locals.book) { %><%= book.short_description %><% } %></textarea>
+						<small class="text-body-secondary">Max 1000 characters</small>
+						<small class="text-body-secondary">(Optional)</small>
 					</div>
 					<div class="row mb-5">
-						<label for="notes" class="h4 league-spartan">Notes</label>
-						<textarea id="notes" name="notes" rows="10" class="form-control"><% if(locals.book) { %><%= book.notes %><% } %></textarea>
+						<label for="notes" class="fs-5 form-label league-spartan">Notes</label>
+						<textarea id="notes" name="notes" rows="10" class="form-control" maxlength="2000"><% if(locals.book) { %><%= book.notes %><% } %></textarea>
+						<small class="text-body-secondary">Max 2000 characters</small>
+						<small class="text-body-secondary">(Optional)</small>
 					</div>
 				</div>
 			</div>

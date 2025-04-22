@@ -59,13 +59,18 @@ async function addData(data) {
 	if (!title || !author || !isbn || !date_read) {
 		return undefined;
 	}
+
+	// Pre-process strings
+	const new_short_description = short_description.replace(/(?:\r\n)/g, '\n');
+	const new_notes = notes.replace(/(?:\r\n)/g, '\n');
+	
 	try {
 		const result = await db.query(`
 			INSERT INTO books (title, author, isbn, short_description, notes, rating, date_read)
 			VALUES ($1, $2, $3, $4, $5, $6, $7)
 			RETURNING id;
 			`,
-			[title, author, isbn, short_description || null, notes || null, parseInt(rating) || null, new Date(date_read).toISOString().slice(0, 10)]
+			[title, author, isbn, new_short_description || null, new_notes || null, parseInt(rating) || null, new Date(date_read).toISOString().slice(0, 10)]
 		);
 		if (result && result.rows.length === 1) {
 			return result.rows[0];
