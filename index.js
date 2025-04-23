@@ -174,11 +174,13 @@ app.post("/edit/:id", async (req, res) => {
 	const id = parseInt(req.params.id);
 	if (req.body["action"] === "edit") {
 		// Route to render book edit page
-		const foundBook = await fetchDataById(id);
-		if (foundBook) {
+		const book = await fetchDataById(id);
+		if (book) {
+			const coverUrl = await fetchImage(`https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`);
 			res.render("edit.ejs", {
-				book: foundBook,
-				date: formatDate(foundBook.date_read)
+				book,
+				date: formatDate(book.date_read),
+				coverUrl
 			});
 		} else {
 			res.redirect(`/book/${ id }`);
