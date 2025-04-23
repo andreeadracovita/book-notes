@@ -141,6 +141,12 @@ a.nav-link:hover {
 }
 
 /* Cover */
+.highlight-cover {
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px var(--dark-brown);
+}
+
 .cover-placeholder {
     height: 400px;
     width: 260px;
@@ -150,10 +156,16 @@ a.nav-link:hover {
     box-shadow: 0px 0px 10px var(--dark-brown);
 }
 
+.grid-cover-container {
+    height: 300px;
+}
+
 .grid-cover {
-    object-fit: cover;
+    object-fit: scale-down;
     border-radius: 8px;
     box-shadow: 0px 0px 10px var(--dark-brown);
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .zoom {
@@ -164,10 +176,16 @@ a.nav-link:hover {
     transform: scale(1.1);
 }
 
+.detailed-cover-container {
+    height: 400px;
+}
+
 .detailed-cover {
     object-fit: scale-down;
     border-radius: 8px;
     box-shadow: 0px 0px 10px var(--dark-brown);
+    max-height: 100%;
+    max-width: 100%;
 }
 
 /* Mobile */

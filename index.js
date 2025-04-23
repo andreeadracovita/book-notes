@@ -114,8 +114,7 @@ function formatDate(date) {
 
 async function fetchImage(url) {
     const response = await fetch(url);
-    console.log(response);
-    if (!response.ok) {
+    if (!response.ok || response.headers.get('content-type') === null) {
     	return undefined;
     }
     return url;
@@ -151,7 +150,6 @@ app.get("/book/:id", async (req, res) => {
 	const book = await fetchDataById(id);
 	if (book) {
 		const coverUrl = await fetchImage(`https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`);
-		console.log(coverUrl);
 		res.render("book.ejs", {
 			book,
 			coverUrl
@@ -167,7 +165,6 @@ app.post("/add", async (req, res) => {
 	if (result) {
 		res.redirect(`/book/${ result.id }`);
 	} else {
-		console.log("The book could not be added");
 		res.redirect("/new");
 	}
 });

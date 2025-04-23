@@ -11,7 +11,17 @@
 				<div class="col-12 col-lg-4 text-center">
 					<% if (locals.book) { %>
 						<!-- Edit -->
-						<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-L.jpg" class="mb-3 detailed-cover" loading="lazy" height="400" />
+						<% if (locals.coverUrl) { %>
+							<div class="detailed-cover-container mb-3">
+								<img src="<%= coverUrl %>" class="detailed-cover" loading="lazy" />
+							</div>
+						<% } else { %>
+							<div class="w-100 d-flex justify-content-center">
+								<div class="cover-placeholder mb-3 d-flex align-items-center justify-content-center">
+									<p class="h2">Cover</p>
+								</div>
+							</div>
+						<% } %>
 						<div id="desktop-buttons" class="d-none d-lg-inline">
 							<button class="btn button w-75 mb-2 d-inline-flex align-items-center justify-content-center" name="action" value="save">
 								<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-pencil me-1" viewBox="0 0 16 16">

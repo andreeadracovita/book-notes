@@ -22,7 +22,7 @@
 			<div class="row flex-row">
 				<div class="col-4 col-lg-2">
 					<a href="/book/<%= highlight.id %>">
-						<img src="https://covers.openlibrary.org/b/isbn/<%= highlight.isbn %>-M.jpg" loading="lazy" class="w-100 grid-cover"/>
+						<img src="https://covers.openlibrary.org/b/isbn/<%= highlight.isbn %>-M.jpg" loading="lazy" class="w-100 highlight-cover"/>
 					</a>
 				</div>
 				<div id="highlight-detail" class="col-8 col-lg-10">
@@ -68,9 +68,11 @@
 			</div>
 			<div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 gx-5">
 				<% for(let book of books){ %>
-					<div class="col text-center">
+					<div class="col text-center mb-5">
 						<a href="/book/<%= book.id %>">
-							<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" loading="lazy" height="320" class="w-100 grid-cover zoom mt-4"/>
+							<div class="grid-cover-container mb-1">
+								<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" loading="lazy" class="grid-cover zoom"/>
+							</div>
 							<h3 class="lead league-spartan mt-3"><%= book.title %></h3>
 							<p class="lato-regular small mb-1"><%= book.author %></p>
 							<p class="lato-regular small mb-1">Date read: <%= book.date_read.toLocaleString('default', { day: 'numeric', month: 'short', year: 'numeric' }) %></p>
