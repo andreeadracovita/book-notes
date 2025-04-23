@@ -42,6 +42,16 @@ nav {
     background-color: var(--olive);
 }
 
+.vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: inherit;
+    text-align: center;
+}
+
+.hero-credit {
+    top: -20px;
+}
+
 #footer {
     background-color: var(--light-brown);
 }
