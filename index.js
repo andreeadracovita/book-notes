@@ -63,7 +63,7 @@ async function addData(data) {
 	// Pre-process strings
 	const new_short_description = short_description.replace(/(?:\r\n)/g, '\n');
 	const new_notes = notes.replace(/(?:\r\n)/g, '\n');
-	
+
 	try {
 		const result = await db.query(`
 			INSERT INTO books (title, author, isbn, short_description, notes, rating, date_read)
@@ -112,6 +112,15 @@ function formatDate(date) {
 		date.getDate().toString().padStart(2, '0');
 }
 
+async function fetchImage(url) {
+    const response = await fetch(url);
+    console.log(response);
+    if (!response.ok) {
+    	return undefined;
+    }
+    return url;
+}
+
 // Route to render the landing page
 app.get("/", async (req, res) => {
 	const books = await fetchData();
@@ -139,10 +148,13 @@ app.get("/new", (req, res) => {
 // Route to render a specific book page by id
 app.get("/book/:id", async (req, res) => {
 	const id = parseInt(req.params.id);
-	const foundBook = await fetchDataById(id);
-	if (foundBook) {
+	const book = await fetchDataById(id);
+	if (book) {
+		const coverUrl = await fetchImage(`https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`);
+		console.log(coverUrl);
 		res.render("book.ejs", {
-			book: foundBook
+			book,
+			coverUrl
 		});
 	} else {
 		res.redirect("/");

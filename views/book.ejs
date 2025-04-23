@@ -5,7 +5,15 @@
 	<div class="container main-padding">
 		<div class="row my-5">
 			<div class="col-12 col-lg-4 text-center">
-				<img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-L.jpg" class="mb-3 detailed-cover" loading="lazy" height="400" />
+				<% if (locals.coverUrl) { %>
+					<img src="<%= coverUrl %>" class="mb-3 detailed-cover" loading="lazy" height="400" />
+				<% } else { %>
+					<div class="w-100 d-flex justify-content-center">
+						<div class="cover-placeholder mb-3 d-flex align-items-center justify-content-center">
+							<p class="h2">Cover</p>
+						</div>
+					</div>
+				<% } %>
 				<form method="post" action="/edit/<%= book.id %>" class="d-none d-lg-inline">
 					<button class="btn button w-75 mb-2 d-inline-flex align-items-center justify-content-center" name="action" value="edit">
 						<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-pencil me-1" viewBox="0 0 16 16">
