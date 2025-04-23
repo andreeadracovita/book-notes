@@ -63,31 +63,31 @@
 						<% } %>
 					</div>
 					<div class="row mb-2">
-						<div class="col-2">
+						<div class="col-3">
 							<label for="title" class="form-label lato-regular">Title</label>
 						</div>
-						<div class="col-10">
+						<div class="col-9">
 							<input id="title" type="text" name="title" class="w-100 form-control" required <% if(locals.book) { %> value="<%= book.title %>" <% } %> >
 						</div>
 					</div>
 					<div class="row mb-2">
-						<div class="col-2">
+						<div class="col-3">
 							<label for="author" class="form-label lato-regular">Author</label>
 						</div>
-						<div class="col-10">
+						<div class="col-9">
 							<input id="author" type="text" name="author" class="w-100 form-control" required <% if(locals.book) { %> value="<%= book.author %>" <% } %> >
 						</div>
 					</div>
 					<div class="row mb-2">
-						<div class="col-2">
+						<div class="col-3">
 							<label for="date_read">Date read</label>
 						</div>
-						<div class="col-10">
+						<div class="col-4">
 							<input id="date_read" type="date" name="date_read" class="form-control" required <% if(locals.date) { %> value="<%= date %>" <% } %> >
 						</div>
 					</div>
 					<div class="row mb-2">
-						<div class="col-2">
+						<div class="col-3">
 							<label for="isbn" class="form-label lato-regular">ISBN</label>
 						</div>
 						<div class="col-4">
