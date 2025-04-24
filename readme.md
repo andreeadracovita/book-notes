@@ -86,16 +86,16 @@ See test plan [here](docs/test_plan/test_plan.md).
 ## Screenshots
 
 ### Desktop
-[Landing page hero](docs/screenshots/Desktop_0.png)
-[Landing page library](docs/screenshots/Desktop_1.png)
-[Book page](docs/screenshots/Desktop_2.png)
-[Edit page](docs/screenshots/Desktop_3.png)
-[New book](docs/screenshots/Desktop_4.png)
+![Landing page hero](docs/screenshots/Desktop_0.png)
+![Landing page library](docs/screenshots/Desktop_1.png)
+![Book page](docs/screenshots/Desktop_2.png)
+![Edit page](docs/screenshots/Desktop_3.png)
+![New book](docs/screenshots/Desktop_4.png)
 
 ### Mobile
-[Landing page hero](docs/screenshots/Mobile_0.png)
-[Landing page library](docs/screenshots/Mobile_1.png)
-[Book page](docs/screenshots/Mobile_2.png)
-[Book page detail](docs/screenshots/Mobile_3.png)
-[Edit page](docs/screenshots/Mobile_4.png)
-[New book](docs/screenshots/Mobile_5.png)
+![Landing page hero](docs/screenshots/Mobile_0.png)
+![Landing page library](docs/screenshots/Mobile_1.png)
+![Book page](docs/screenshots/Mobile_2.png)
+![Book page detail](docs/screenshots/Mobile_3.png)
+![Edit page](docs/screenshots/Mobile_4.png)
+![New book](docs/screenshots/Mobile_5.png)
