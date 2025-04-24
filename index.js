@@ -2,18 +2,39 @@ import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 import "dotenv/config";
+import * as fs from "fs";
 
 const app = express();
 const port = 3000;
 
-const db = new pg.Client({
-	user: process.env.DB_USER,
-	host: "localhost",
-	database: process.env.DB,
-	password: process.env.DB_PASSWORD,
-});
+// Use database entries if able to connect.
+let db;
+if (process.env.DB_USER && process.env.DB && process.env.DB_PASSWORD) {
+	db = new pg.Client({
+		user: process.env.DB_USER,
+		host: "localhost",
+		database: process.env.DB,
+		password: process.env.DB_PASSWORD
+	});
 
-db.connect();
+	db.connect();
+	db.on('error', (err) => {
+	    console.error('something bad has happened!', err.stack);
+	});
+}
+
+/**
+ * Use default json entries if no connection to db (non-persistent test data environment).
+ * Fetch base book list at the start of the app and build upon it.
+ */
+let booksJson = [];
+let lastId = 6;
+try {
+	const jsonString = fs.readFileSync("./books.json");
+	booksJson = JSON.parse(jsonString);
+} catch (err) {
+	console.log(err);
+}
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -23,6 +44,10 @@ let orderBy = "newest";
 let highlightId = 1;
 
 async function fetchData() {
+	if (!db) {
+		return booksJson;
+	}
+
 	try {
 		let result;
 		if (orderBy === "title") {
@@ -41,6 +66,11 @@ async function fetchData() {
 }
 
 async function fetchDataById(id) {
+	if (!db) {
+		const book = booksJson.find((b) => b["id"] == id);
+		return book;
+	}
+
 	try {
 		const result = await db.query("SELECT * FROM books WHERE id = $1", [id]);
 		if (result && result.rows.length === 1) {
@@ -54,6 +84,22 @@ async function fetchDataById(id) {
 	}
 }
 
+/**
+ * Add data to non-persisted data array.
+ */
+function addDataToArray(data) {
+	// Serial id
+	data["id"] = ++lastId;
+
+	// Add optional fields
+	data["rating"] = data["rating"] || null;
+	data["notes"] = data["notes"] || null;
+	data["short_description"] = data["short_description"] || null;
+
+	booksJson.push(data);
+	return data;
+}
+
 async function addData(data) {
 	const { title, author, isbn, date_read, rating, short_description, notes } = data;
 	if (!title || !author || !isbn || !date_read) {
@@ -63,6 +109,10 @@ async function addData(data) {
 	// Pre-process strings
 	const new_short_description = short_description.replace(/(?:\r\n)/g, '\n');
 	const new_notes = notes.replace(/(?:\r\n)/g, '\n');
+
+	if (!db) {
+		return addDataToArray(data);
+	}
 
 	try {
 		const result = await db.query(`
@@ -81,11 +131,33 @@ async function addData(data) {
 	}
 }
 
+/**
+ * Update data in non-persisted data array.
+ */
+function updateDataFromArray(id, data) {
+	const index = booksJson.findIndex((b) => b["id"] == id);
+	if (index != -1) {
+		booksJson[index]["title"] = data["title"];
+		booksJson[index]["author"] = data["author"];
+		booksJson[index]["isbn"] = data["isbn"];
+		booksJson[index]["short_description"] = data["short_description"];
+		booksJson[index]["notes"] = data["notes"];
+		booksJson[index]["rating"] = data["rating"];
+		booksJson[index]["date_read"] = data["date_read"];
+	}
+}
+
 async function updateDataWithId(id, data) {
 	const { title, author, isbn, date_read, rating, short_description, notes } = data;
 	if (!id || !title || !author || !isbn || !date_read) {
 		return;
 	}
+
+	if (!db) {
+		updateDataFromArray(id, data);
+		return;
+	}
+
 	try {
 		await db.query(`
 			UPDATE books
@@ -98,7 +170,20 @@ async function updateDataWithId(id, data) {
 	}
 }
 
+/**
+ * Delete data from non-persisted data array.
+ */
+function deleteDataFromArray(id) {
+	const indexToRemove = booksJson.findIndex((b) => b["id"] == id);
+	booksJson.splice(indexToRemove, 1);
+}
+
 async function removeData(id) {
+	if (!db) {
+		deleteDataFromArray(id);
+		return;
+	}
+
 	try {
 		await db.query("DELETE FROM books WHERE id = $1", [id]);
 	} catch (err) {
@@ -179,7 +264,7 @@ app.post("/edit/:id", async (req, res) => {
 			const coverUrl = await fetchImage(`https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`);
 			res.render("edit.ejs", {
 				book,
-				date: formatDate(book.date_read),
+				date: formatDate(new Date(book.date_read)),
 				coverUrl
 			});
 		} else {
@@ -207,7 +292,7 @@ app.get("/edit/:id", async (req, res) => {
 		const coverUrl = await fetchImage(`https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`);
 		res.render("edit.ejs", {
 			book,
-			date: formatDate(book.date_read),
+			date: formatDate(new Date(book.date_read)),
 			coverUrl
 		});
 	} else {

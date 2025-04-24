@@ -1,0 +1,62 @@
+[
+	{
+		"id": 1,
+		"title": "Animal Farm",
+		"author": "George Orwell",
+		"isbn": "0881030074",
+		"short_description": "A farm is taken over by its overworked, mistreated animals. With flaming idealism and stirring slogans, they set out to create a paradise of progress, justice, and equality. Thus the stage is set for one of the most telling satiric fables ever penned –a razor-edged fairy tale for grown-ups that records the evolution from revolution against tyranny to a totalitarianism just as terrible.\nWhen Animal Farm was first published, Stalinist Russia was seen as its target. Today it is devastatingly clear that wherever and whenever freedom is attacked, under whatever banner, the cutting clarity and savage comedy of George Orwell’s masterpiece have a meaning and message still ferociously fresh.",
+		"notes": "- Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n- Nunc sed est a sapien maximus vestibulum.\n- Donec aliquam quam vel malesuada imperdiet.\n- Aliquam interdum mi sed arcu auctor, at molestie sapien ornare.\n- Aenean tempus enim et sem efficitur porta.\n\n- Vivamus aliquet nulla vitae elit molestie luctus.\n- Vestibulum vel turpis at libero elementum tincidunt.\n- Suspendisse ultricies est eu massa commodo laoreet.",
+		"rating": 5,
+		"date_read": "2023-02-16"
+	},
+	{
+		"id": 2,
+		"title": "Heidi",
+		"author": "Johanna Spyri",
+		"isbn": "0448405636",
+		"short_description": "Little orphan Heidi goes to live high in the Alps with her gruff grandfather and brings happiness to all who know her on the mountain. When Heidi goes to Frankfurt to work in a wealthy household, she dreams of returning to the mountains and meadows, her friend Peter, and her beloved grandfather.",
+		"notes": "- Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n- Nunc sed est a sapien maximus vestibulum.\n- Donec aliquam quam vel malesuada imperdiet.\n- Aliquam interdum mi sed arcu auctor, at molestie sapien ornare.\n- Aenean tempus enim et sem efficitur porta.\n\n- Vivamus aliquet nulla vitae elit molestie luctus.\n- Vestibulum vel turpis at libero elementum tincidunt.\n- Suspendisse ultricies est eu massa commodo laoreet.",
+		"rating": 5,
+		"date_read": "2025-03-20"
+	},
+	{
+		"id": 3,
+		"title": "The Obstacle is the Way",
+		"author": "Ryan Holiday",
+		"isbn": "1781251487",
+		"short_description": "We are stuck, stymied, frustrated. But it needn’t be this way. There is a formula for success that’s been followed by the icons of history—from John D. Rockefeller to Amelia Earhart to Ulysses S. Grant to Steve Jobs—a formula that let them turn obstacles into opportunities. Faced with impossible situations, they found the astounding triumphs we all seek.\nThese men and women were not exceptionally brilliant, lucky, or gifted. Their success came from timeless philosophical principles laid down by a Roman emperor who struggled to articulate a method for excellence in any and all situations.\nThis book reveals that formula for the first time—and shows us how we can turn our own adversity into advantage.",
+		"notes": "- Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n- Nunc sed est a sapien maximus vestibulum.\n- Donec aliquam quam vel malesuada imperdiet.\n- Aliquam interdum mi sed arcu auctor, at molestie sapien ornare.\n- Aenean tempus enim et sem efficitur porta.\n\n- Vivamus aliquet nulla vitae elit molestie luctus.\n- Vestibulum vel turpis at libero elementum tincidunt.\n- Suspendisse ultricies est eu massa commodo laoreet.",
+		"rating": 5,
+		"date_read": "2025-04-17"
+	},
+	{
+		"id": 4,
+		"title": "Dune (Dune, #1)",
+		"author": "Frank Herbert",
+		"isbn": "0441172660",
+		"short_description": "Set on the desert planet Arrakis, Dune is the story of the boy Paul Atreides, heir to a noble family tasked with ruling an inhospitable world where the only thing of value is the \"spice\" melange, a drug capable of extending life and enhancing consciousness. Coveted across the known universe, melange is a prize worth killing for...\n\nWhen House Atreides is betrayed, the destruction of Paul's family will set the boy on a journey toward a destiny greater than he could ever have imagined. And as he evolves into the mysterious man known as Muad'Dib, he will bring to fruition humankind's most ancient and unattainable dream.\n\nA stunning blend of adventure and mysticism, environmentalism and politics, Dune won the first Nebula Award, shared the Hugo Award, and formed the basis of what is undoubtedly the grandest epic in science fiction.",
+		"notes": "- Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n- Nunc sed est a sapien maximus vestibulum.\n- Donec aliquam quam vel malesuada imperdiet.\n- Aliquam interdum mi sed arcu auctor, at molestie sapien ornare.\n- Aenean tempus enim et sem efficitur porta.\n\n- Vivamus aliquet nulla vitae elit molestie luctus.\n- Vestibulum vel turpis at libero elementum tincidunt.\n- Suspendisse ultricies est eu massa commodo laoreet.",
+		"rating": 4,
+		"date_read": "2010-09-20"
+	},
+	{
+		"id": 5,
+		"title": "JavaScript: The Definitive Guide, 7th Edition",
+		"author": "David Flanagan",
+		"isbn": "0596805527",
+		"short_description": "JavaScript is the programming language of the web and is used by more software developers today than any other programming language. For nearly 25 years this best seller has been the go-to guide for JavaScript programmers. The seventh edition is fully updated to cover the 2020 version of JavaScript, and new chapters cover classes, modules, iterators, generators, Promises, async/await, and metaprogramming. You’ll find illuminating and engaging example code throughout.\n\nThis book is for programmers who want to learn JavaScript and for web developers who want to take their understanding and mastery to the next level. It begins by explaining the JavaScript language itself, in detail, from the bottom up. It then builds on that foundation to cover the web platform and Node.js.",
+		"notes": "Topics include:\n-Types, values, variables, expressions, operators, statements, objects, and arrays\n-Functions, classes, modules, iterators, generators, Promises, and async/await\n-JavaScript’s standard library: data structures, regular expressions, JSON, i18n, etc.\n-The web platform: documents, components, graphics, networking, storage, and threads\n-Node.js: buffers, files, streams, threads, child processes, web clients, and web servers\n-Tools and language extensions that professional JavaScript developers rely on",
+		"rating": 5,
+		"date_read": "2024-04-10"
+	},
+	{
+		"id": 6,
+		"title": "Cracking the Coding Interview",
+		"author": "Gayle Laakmann McDowell",
+		"isbn": "0984782869",
+		"short_description": "Cracking the Coding Interview, 6th Edition is here to help you through this process, teaching you what you need to know and enabling you to perform at your very best. I've coached and interviewed hundreds of software engineers. The result is this book.\n\nLearn how to uncover the hints and hidden details in a question, discover how to break down a problem into manageable chunks, develop techniques to unstick yourself when stuck, learn (or re-learn) core computer science concepts, and practice on 189 interview questions and solutions.",
+		"notes": "- Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n- Nunc sed est a sapien maximus vestibulum.\n- Donec aliquam quam vel malesuada imperdiet.\n- Aliquam interdum mi sed arcu auctor, at molestie sapien ornare.\n- Aenean tempus enim et sem efficitur porta.\n\n- Vivamus aliquet nulla vitae elit molestie luctus.\n- Vestibulum vel turpis at libero elementum tincidunt.\n- Suspendisse ultricies est eu massa commodo laoreet.",
+		"rating": 4,
+		"date_read": "2020-09-05"
+	}
+]
