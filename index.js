@@ -41,7 +41,7 @@ app.use(express.static("public"));
 
 let orderBy = "newest";
 
-let highlightId = 1;
+let highlightId = 5;
 
 async function fetchData() {
 	if (!db) {
