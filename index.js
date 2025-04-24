@@ -45,6 +45,13 @@ let highlightId = 5;
 
 async function fetchData() {
 	if (!db) {
+		if (orderBy === "title") {
+			booksJson.sort((a, b) => a["title"].localeCompare(b["title"]) );
+		} else if (orderBy === "newest") {
+			booksJson.sort((a, b) => b["date_read"].localeCompare(a["date_read"]) );
+		} else if (orderBy === "rating") {
+			booksJson.sort((a, b) => b["rating"] - a["rating"] );
+		}
 		return booksJson;
 	}
 
@@ -56,7 +63,6 @@ async function fetchData() {
 			result = await db.query("SELECT * FROM books ORDER BY date_read DESC");
 		} else if (orderBy === "rating") {
 			result = await db.query("SELECT * FROM books ORDER BY rating DESC");
-
 		}
 		return result.rows;
 	} catch (err) {
