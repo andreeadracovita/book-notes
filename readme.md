@@ -4,6 +4,8 @@ Book notes web app useful for saving read books and adding memorable notes along
 
 The app allows the user to view all saved books, sort them by recency, rating or title. The user can add new books, edit content on previously added books or removing them. The landing page features a "Highlight" section that showcases the most memorable book in the library.
 
+Deployment [here](https://notable-ar.onrender.com/).
+
 ## Requirements
 
 For development, you will only need Node.js and a node global package, Yarn, installed in your environement.
