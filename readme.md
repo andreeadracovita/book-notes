@@ -6,6 +6,8 @@ The app allows the user to view all saved books, sort them by recency, rating or
 
 Deployment [here](https://notable-ar.onrender.com/).
 
+Note: The project features both PostgreSQL functionality for interacting with a db, as well as a default json books list as a starter for no db connection. Initial deployment uses the default json for the moment (pending update).
+
 ## Requirements
 
 For development, you will only need Node.js and a node global package, Yarn, installed in your environement.
